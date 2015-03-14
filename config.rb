@@ -44,7 +44,7 @@
 # before build hooks
 before_build do |builder|
   print "Before build we look for changes in Contentful"
-  system("middleman contentful")
+  system("middleman contentful  --rebuild")
   puts "done."
 end
  
