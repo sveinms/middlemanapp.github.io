@@ -68,15 +68,15 @@ activate :contentful do |f|
   f.content_types = { position: '5L6cg0jdReS4KM0eO8QcGY'}
 end
 
-# Build-specific configuration
-configure :build do
-
-  # before build hooks
-after_build do |builder|
+# Before build hook
+before_build do |builder|
   print "Before build we look for changes in Contentful"
   system("middleman contentful")
   puts "done."
 end
+
+# Build-specific configuration
+configure :build do
   # For example, change the Compass output style for deployment
   # activate :minify_css
  
