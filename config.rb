@@ -37,8 +37,8 @@
  
 # Reload the browser automatically whenever files change
  configure :development do
-   activate :livereload
-   set :debug_assets, true
+   #activate :livereload
+   #set :debug_assets, true
  end
 
 # before build hooks
