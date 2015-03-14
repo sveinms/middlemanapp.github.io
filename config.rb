@@ -41,12 +41,7 @@
    #set :debug_assets, true
  end
 
-# before build hooks
-before_build do |builder|
-  print "Before build we look for changes in Contentful"
-  system("middleman contentful  --rebuild")
-  puts "done."
-end
+
  
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -75,6 +70,13 @@ end
 
 # Build-specific configuration
 configure :build do
+
+  # before build hooks
+before_build do |builder|
+  print "Before build we look for changes in Contentful"
+  system("middleman contentful")
+  puts "done."
+end
   # For example, change the Compass output style for deployment
   # activate :minify_css
  
