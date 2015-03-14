@@ -72,7 +72,7 @@ end
 configure :build do
 
   # before build hooks
-before_build do |builder|
+after_build do |builder|
   print "Before build we look for changes in Contentful"
   system("middleman contentful")
   puts "done."
