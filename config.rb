@@ -65,15 +65,14 @@ activate :deploy do |deploy|
   # deploy.branch   = 'custom-branch' # default: gh-pages
   # deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
   # deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
-  deploy.build_before = true # default: false
+   deploy.build_before = true # default: false
 end
 
 # Before build hook
 before_build do |builder|
   print "Before build we delete data and build-filder and look for changes in Contentful"
   system("rm -rf build")
-  system("rm -rf data/playground/position/*.yaml")
-  system("middleman contentful")
+  system("middleman contentful --rebuild")
   puts "done."
 end
  
