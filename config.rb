@@ -71,8 +71,8 @@ end
 # Before build hook
 before_build do |builder|
   print "Before build we delete data and build-filder and look for changes in Contentful"
-  #system("rm -rf build")
-  #system("rm -rf data")
+  system("rm -rf build")
+  system("rm -rf data/playground/position/*.yaml")
   system("middleman contentful")
   puts "done."
 end
