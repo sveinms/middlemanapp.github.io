@@ -67,6 +67,15 @@ activate :deploy do |deploy|
   # deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
   deploy.build_before = true # default: false
 end
+
+# Before build hook
+before_build do |builder|
+  print "Before build we delete data and build-filder and look for changes in Contentful"
+  #system("rm -rf build")
+  #system("rm -rf data")
+  system("middleman contentful")
+  puts "done."
+end
  
 # Contentful plugin 
 activate :contentful do |f|
@@ -76,14 +85,10 @@ activate :contentful do |f|
   f.content_types = { position: '5L6cg0jdReS4KM0eO8QcGY'}
 end
 
+
+
 # Build-specific configuration
 configure :build do
-  print "Before build we delete data and build-filder and look for changes in Contentful"
-  system("rm -rf build")
-  system("rm -rf data")
-  system("middleman contentful")
-  puts "done."
-
   # For example, change the Compass output style for deployment
   # activate :minify_css
  
