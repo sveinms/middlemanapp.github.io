@@ -58,15 +58,15 @@ set :images_dir, 'images'
 
 set :build_dir, 'build'
  
-#activate :deploy do |deploy|
-  #deploy.method = :git
+activate :deploy do |deploy|
+  deploy.method = :git
   # Optional Settings
   # deploy.remote   = 'custom-remote' # remote name or git url, default: origin
   # deploy.branch   = 'custom-branch' # default: gh-pages
   # deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
   # deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
   #deploy.build_before = true # default: false
-#end
+end
  
 # Contentful plugin 
 activate :contentful do |f|
@@ -78,7 +78,9 @@ end
 
 # Build-specific configuration
 configure :build do
-  print "Before build we look for changes in Contentful"
+  print "Before build we delete data and build-filder and look for changes in Contentful"
+  system("rm -rf build")
+  system("rm -rf data")
   system("middleman contentful")
   puts "done."
 
